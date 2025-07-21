@@ -343,24 +343,26 @@ p {
 }
 
 .image-placeholder {
-    width: 280px;
-    height: 320px;
+    width: 320px; /* Increased width */
+    height: 320px; /* Match height to width for perfect circle */
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    border-radius: var(--radius-xl);
+    border-radius: 50%; /* Perfect circle */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-heavy);
+    margin-left: 40px; /* Moves it more to the right */
 }
 
 .profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: var(--radius-xl);
+    border-radius: 50%; /* Circle inside circle */
 }
+
 
 /* Section Styles */
 .section-title {
