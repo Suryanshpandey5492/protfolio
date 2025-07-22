@@ -114,6 +114,7 @@ p {
 .navbar {
     position: fixed;
     top: 0;
+    bottom: 300%;
     width: 100%;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -132,6 +133,7 @@ p {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
+    bottom: 100%;
     padding: var(--spacing-md);
     display: flex;
     justify-content: space-between;
@@ -240,7 +242,6 @@ p {
 }
 
 .hero-title {
-    margin-top: clamp(1rem, 5vh, 3rem); /* Dynamic top margin */
     margin-bottom: clamp(1rem, 2.5vw, 2rem);
     font-size: clamp(1.5rem, 5vw, 3rem);
     color: var(--text-primary);
@@ -255,7 +256,6 @@ p {
         opacity: 1;
     }
 }
-
 
 
 
