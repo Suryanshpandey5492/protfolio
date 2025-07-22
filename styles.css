@@ -240,6 +240,7 @@ p {
 }
 
 .hero-title {
+    margin-top: clamp(1rem, 5vh, 3rem); /* Dynamic top margin */
     margin-bottom: clamp(1rem, 2.5vw, 2rem);
     font-size: clamp(1.5rem, 5vw, 3rem);
     color: var(--text-primary);
@@ -254,6 +255,7 @@ p {
         opacity: 1;
     }
 }
+
 
 
 
