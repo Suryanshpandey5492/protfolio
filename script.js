@@ -96,30 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const heroTitle = document.querySelector('.hero-title');
 const originalText = heroTitle.innerHTML;
 
-// function typeWriter(element, html, speed) {
-//     let i = 0;
-//     let result = '';
-//     let isTag = false;
 
-//     function type() {
-//         if (i < html.length) {
-//             const char = html[i];
-
-//             if (char === '<') isTag = true;
-//             if (!isTag) result += char;
-//             else result += char;
-
-//             element.innerHTML = result;
-
-//             if (char === '>') isTag = false;
-
-//             i++;
-//             setTimeout(type, isTag ? 0 : speed); // Skip delay inside tags
-//         }
-//     }
-
-//     type();
-// }
 function typeWriter(element, html, speed) {
     let tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
