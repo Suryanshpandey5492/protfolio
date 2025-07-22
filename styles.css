@@ -240,9 +240,22 @@ p {
 }
 
 .hero-title {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: clamp(1rem, 2.5vw, 2rem);
+    font-size: clamp(1.5rem, 5vw, 3rem);
     color: var(--text-primary);
+
+    opacity: 0;
+    animation: showTitle 0s ease forwards;
+    animation-delay: 0.1s; /* Delay before it becomes visible */
 }
+
+@keyframes showTitle {
+    to {
+        opacity: 1;
+    }
+}
+
+
 
 .highlight {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));

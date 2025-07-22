@@ -96,29 +96,90 @@ document.addEventListener('DOMContentLoaded', () => {
 const heroTitle = document.querySelector('.hero-title');
 const originalText = heroTitle.innerHTML;
 
+// function typeWriter(element, html, speed) {
+//     let i = 0;
+//     let result = '';
+//     let isTag = false;
+
+//     function type() {
+//         if (i < html.length) {
+//             const char = html[i];
+
+//             if (char === '<') isTag = true;
+//             if (!isTag) result += char;
+//             else result += char;
+
+//             element.innerHTML = result;
+
+//             if (char === '>') isTag = false;
+
+//             i++;
+//             setTimeout(type, isTag ? 0 : speed); // Skip delay inside tags
+//         }
+//     }
+
+//     type();
+// }
 function typeWriter(element, html, speed) {
-    let i = 0;
-    let result = '';
-    let isTag = false;
+    let tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
 
-    function type() {
-        if (i < html.length) {
-            const char = html[i];
+    // Clear element content BEFORE starting
+    element.innerHTML = '';
 
-            if (char === '<') isTag = true;
-            if (!isTag) result += char;
-            else result += char;
+    const nodes = Array.from(tempDiv.childNodes);
+    let index = 0;
 
-            element.innerHTML = result;
+    function typeNode(node, parent, callback) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent;
+            let j = 0;
 
-            if (char === '>') isTag = false;
+            function typeChar() {
+                if (j < text.length) {
+                    parent.appendChild(document.createTextNode(text[j]));
+                    j++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    callback();
+                }
+            }
 
-            i++;
-            setTimeout(type, isTag ? 0 : speed); // Skip delay inside tags
+            typeChar();
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const clone = node.cloneNode(false);
+            parent.appendChild(clone);
+            const children = Array.from(node.childNodes);
+            let k = 0;
+
+            function typeChildren() {
+                if (k < children.length) {
+                    typeNode(children[k], clone, () => {
+                        k++;
+                        typeChildren();
+                    });
+                } else {
+                    callback();
+                }
+            }
+
+            typeChildren();
+        } else {
+            // Skip comments or unsupported node types
+            callback();
         }
     }
 
-    type();
+    function typeNextNode() {
+        if (index < nodes.length) {
+            typeNode(nodes[index], element, () => {
+                index++;
+                typeNextNode();
+            });
+        }
+    }
+
+    typeNextNode(); // Start typing
 }
 
 // Initialize typing animation when page loads
